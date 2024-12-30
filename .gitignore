@@ -1,0 +1,78 @@
+# Backups
+*~
+
+# Prerequisites
+*.d
+
+# Object files
+Objects/*
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+*.log
+*.tlog
+*.manifest
+*.lastbuildstate
+*.cache
+*.pdb
+
+# Ghidra
+*.gpr
+*.rep/
+*.lock
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.axf
+
+# Debug files
+Listings/*
+*.lst
+*.map
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+*.crf
+*.iex
+*.sct
+*.lnp
+*.Bak
+*.dep
