@@ -22,6 +22,7 @@
  *      Thread 1 'Thread_LED': Sample thread
  *---------------------------------------------------------------------------*/
 
+unsigned int counter=0;
 void Thread_LED (void *argument) {
   uint32_t led_max    = LED_GetCount();
   uint32_t led_num    = 0;
@@ -29,6 +30,8 @@ void Thread_LED (void *argument) {
   while (1) {
     LED_On(led_num);                                               // Turn specified LED on
     osDelay(500);
+		counter++;
+		if (counter>0xF) counter=0;
     LED_Off(led_num);                                               // Turn specified LED off
     osDelay(500);
 
