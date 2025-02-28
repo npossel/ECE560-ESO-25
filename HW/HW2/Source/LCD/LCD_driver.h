@@ -58,8 +58,8 @@
 /**************************************************************/
 #define	GPIO_ResetBit(pos)	{FPTC->PCOR = MASK(pos); }
 #define	GPIO_SetBit(pos) 		{FPTC->PSOR = MASK(pos); }
-#define GPIO_Write(param) 	{FPTC->PDOR &= ~LCD_DATA_MASK; \
-														 FPTC->PDOR |= (param & 0xff) << LCD_DB8_POS; }
+#define GPIO_Write(param) 	{FPTC->PCOR = LCD_DATA_MASK; \
+														 FPTC->PSOR = (param & 0xff) << LCD_DB8_POS; }
 /**************************************************************/
 
 #define LCD_CTRL_INIT_SEQ_END 0

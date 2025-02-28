@@ -68,10 +68,10 @@ PT_T arrow_pts[] = {{LCD_CENTER_X, LCD_CENTER_Y},
 
 int shape_num_pts = sizeof(shape_pts)/sizeof(PT_T);
 
-void Draw_Indicator(float roll_deg, float pitch_deg) {
+void Draw_Indicator(double roll_deg, double pitch_deg) {
 	PT_T pts[32], center={LCD_CENTER_X, LCD_CENTER_Y};
 	static PT_T	old_pts[32];
-	static float old_roll_deg=1000;
+	static double old_roll_deg=1000;
 	float roll_diff = roll_deg - old_roll_deg;
 	float min_roll_change = 0.1;
 	
@@ -82,8 +82,8 @@ void Draw_Indicator(float roll_deg, float pitch_deg) {
 #endif
 	{
 		old_roll_deg = roll_deg;
-		float roll_rad = roll_deg*M_PI/180.0f;
-		float pitch_rad = pitch_deg*M_PI/180.0f;
+		float roll_rad = roll_deg*M_PI/180.0;
+		float pitch_rad = pitch_deg*M_PI/180.0;
 		
 		Rotate_Points(shape_pts, shape_num_pts, &center, roll_rad, pts);
 		LCD_Draw_Lines(old_pts, shape_num_pts, 1, &black);
@@ -124,12 +124,23 @@ void Simulate_XYZ_Data(int reset) {
 int main (void) {
 	uint16_t r;
 	char buffer[32];
+	char test[100];
+	uint16_t count;
 	PT_T p = {COL_TO_X(0), ROW_TO_Y(0)};
 	
 	Init_RGB_LEDs();
 	LCD_Init();
 	LCD_Text_Init(2);
 	LCD_Erase();
+	
+	count = 0;
+	for(uint8_t c=' '; c<='~'; c++) {
+		test[count] = c;
+		count++;
+	}
+	LCD_Text_PrintStr(&p, test);
+	while(1);
+	
 	LCD_Text_PrintStr(&p, "Homework 2");
 	
 	i2c_init();											// init I2C peripheral
