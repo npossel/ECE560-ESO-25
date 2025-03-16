@@ -6,7 +6,6 @@
 #include "T6963.h"
 
 #include "delay.h"
-#include "debug.h"
 
 const uint8_t * font;
 FONT_HEADER_T * font_header;
@@ -16,16 +15,11 @@ COLOR_T fg, bg;
 
 uint8_t G_LCD_char_width, G_LCD_char_height;
 
-// const uint8_t * fonts[] = {Lucida_Console8x13, Lucida_Console12x19, Lucida_Console20x31};
+
 
 const uint8_t * fonts[] = {P_LUCIDA_CONSOLE8x13, P_LUCIDA_CONSOLE12x19, P_LUCIDA_CONSOLE20x31};
 const uint8_t char_widths[] = {8, 12, 20};
 const uint8_t char_heights[] = {13, 19, 31};
-const uint32_t DBG_Bit[9] = {(0), (2), (3), (4), (8), (9), (10), (11), (32)};
-const FGPIO_MemMapPtr DBG_PT[9] = {FPTD, FPTD, FPTD, FPTD, FPTB, FPTB, FPTB, FPTB, FPTB};
-const PORT_MemMapPtr DBG_PORT[9] = {PORTD, PORTD, PORTD, PORTD, PORTB, PORTB, PORTB, PORTB, PORTB};
-	
-
 
 uint8_t Bit_Reverse_Byte(uint8_t v) {
 // http://graphics.stanford.edu/~seander/bithacks.html#BitReverseObvious
@@ -59,11 +53,10 @@ int LCD_Text_Init(uint8_t font_num) {
 	// Check for invalid font number
 	if (font_num >= sizeof(fonts)/sizeof(fonts[0])) 
 		font_num = 0; // Invalid font number! Default to first.
-
+	
 	font = fonts[font_num];
 	G_LCD_char_width = char_widths[font_num];
 	G_LCD_char_height = char_heights[font_num];
-	
 	font_header = (FONT_HEADER_T *) font;
 	glyph_index = (GLYPH_INDEX_T *) (font + sizeof(FONT_HEADER_T));
 	
@@ -94,91 +87,10 @@ uint8_t LCD_Text_GetGlyphWidth(char ch) {
 	glyph_index_entry = ch - font_header->FirstChar;
 	return glyph_index[glyph_index_entry].Width;
 }
-	
-void Sim_Enhance_PrintChar(PT_T * pos) {
-	int i;
-
-	// Enable clock to ports B and D
-	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTD_MASK;
-	
-	for (i=0; i<8; i++) {
-		DBG_PORT[i]->PCR[DBG_Bit[i]] &= ~PORT_PCR_MUX_MASK; // Make pin GPIO          
-		DBG_PORT[i]->PCR[DBG_Bit[i]] |= PORT_PCR_MUX(1);          
-		DBG_PT[i]->PDDR |= MASK(DBG_Bit[i]);	 // Make an output
-		DBG_PT[i]->PCOR = MASK(DBG_Bit[i]); // Clear output
-	}
-	
-#if DEBUG_INIT_TEST
-	// Walking debug signals test code
-	for (int j=0; j<10; j++) {
-		for (i=0; i<8; i++) {
-			DEBUG_START(i);
-		}
-		for (i=0; i<8; i++) {
-			DEBUG_STOP(i);
-		}
-		for (i=0; i<8; i++) {
-			DEBUG_TOGGLE(i);
-		}
-		for (i=0; i<8; i++) {
-			DEBUG_TOGGLE(i);
-		}
-	}
-#endif
-	
-	PT_T end_pos;
-
-	end_pos.X = pos->X + CHAR_WIDTH - 1 + CHAR_TRACKING;
-	end_pos.Y = pos->Y + CHAR_HEIGHT - 1;
-	DEBUG_START(DBG_CHAR);
-	LCD_Start_Rectangle(pos, &end_pos);
-	LCD_Write_Rectangle_Pixel(&bg, 260);
-	DEBUG_STOP(DBG_CHAR);
-}
-
 void LCD_Text_PrintChar(PT_T * pos, char ch) {
-	
-	
-		
-	
-	
-	int i;
-
-	// Enable clock to ports B and D
-	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK | SIM_SCGC5_PORTD_MASK;
-	
-	for (i=0; i<8; i++) {
-		DBG_PORT[i]->PCR[DBG_Bit[i]] &= ~PORT_PCR_MUX_MASK; // Make pin GPIO          
-		DBG_PORT[i]->PCR[DBG_Bit[i]] |= PORT_PCR_MUX(1);          
-		DBG_PT[i]->PDDR |= MASK(DBG_Bit[i]);	 // Make an output
-		DBG_PT[i]->PCOR = MASK(DBG_Bit[i]); // Clear output
-	}
-	
-#if DEBUG_INIT_TEST
-	// Walking debug signals test code
-	for (int j=0; j<10; j++) {
-		for (i=0; i<8; i++) {
-			DEBUG_START(i);
-		}
-		for (i=0; i<8; i++) {
-			DEBUG_STOP(i);
-		}
-		for (i=0; i<8; i++) {
-			DEBUG_TOGGLE(i);
-		}
-		for (i=0; i<8; i++) {
-			DEBUG_TOGGLE(i);
-		}
-	}
-#endif
-	
-	
-	
-	
 	uint8_t glyph_index_entry;
 	const uint8_t * glyph_data; // start of the data
-	
-#if BITS_PER_PIXEL == 1 // Copy bitmap byte directly
+#if BITS_PER_PIXEL == 1					// Copy bitmap byte directly
 	PT_T cur_pos;
 #endif
 	PT_T end_pos;
@@ -232,10 +144,9 @@ void LCD_Text_PrintChar(PT_T * pos, char ch) {
 	LCD_Refresh();
 #else	// BPP != 1, so expand to given color
 	end_pos.X = pos->X + CHAR_WIDTH - 1 + CHAR_TRACKING;
-	end_pos.Y = pos->Y + CHAR_HEIGHT - 1;
+	end_pos.Y = pos->Y+CHAR_HEIGHT-1;
 
 	LCD_Start_Rectangle(pos, &end_pos); 
-	DEBUG_START(DBG_CHAR);
 
 	for (row = 0; row < CHAR_HEIGHT; row++) {
 		x_bm = 0; // x position within glyph bitmap, can span bytes 
@@ -313,7 +224,6 @@ void LCD_Text_PrintChar(PT_T * pos, char ch) {
 			LCD_Write_Rectangle_Pixel(&bg, CHAR_WIDTH + CHAR_TRACKING - x_bm);
 		}
 	}
-	DEBUG_STOP(DBG_CHAR);
 #endif // BPP != 1
 }
 
@@ -322,16 +232,15 @@ void LCD_Text_PrintStr(PT_T * pos, char * str) {
 		if (*str == '\n') {
 			NEWLINE(pos);
 		} else {
-			LCD_Text_PrintChar(pos, *str);
-			ShortDelay(500);
-	#if FORCE_MONOSPACE
+		LCD_Text_PrintChar(pos, *str);
+#if FORCE_MONOSPACE
 			pos->X += CHAR_WIDTH + CHAR_TRACKING;				// forces monospacing for fonts
-	#else
-			if (*str == ' ')
+#else
+		if (*str == ' ')
 				pos->X += CHAR_WIDTH + CHAR_TRACKING;			// Increase width for space character!
-			else
+		else
 				pos->X += LCD_Text_GetGlyphWidth(*str) + CHAR_TRACKING;	// add a pixel of padding 
-	#endif
+#endif
 			if (pos->X >= LCD_WIDTH) { // wrap to start of next line
 				NEWLINE(pos);
 			}

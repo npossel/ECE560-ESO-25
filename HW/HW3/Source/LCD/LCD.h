@@ -2,6 +2,7 @@
 #define LCD_H
 
 #include <stdint.h>
+#include "config.h"
 #include "misc.h"
 #include "colors.h"
 
@@ -72,7 +73,6 @@ void LCD_24S_Write_Data(uint8_t data);
  void LCD_Text_Test(void);
  int LCD_Text_Init(uint8_t font_num);
  void LCD_Text_PrintChar(PT_T * pos, char ch);
- void Sim_Enhance_PrintChar(PT_T * pos);
  void LCD_Text_PrintStr(PT_T * pos, char * str);
  void LCD_Text_PrintStr_RC( uint8_t  row, uint8_t col, char *  str);
 

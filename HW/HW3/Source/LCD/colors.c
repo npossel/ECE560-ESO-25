@@ -1,0 +1,48 @@
+#include "colors.h"
+
+COLOR_T 
+#if DEV_PACKED_PIXEL_COLOR_T
+	black={ CVT_R(0), CVT_G(0), CVT_B(0)},
+	white={ CVT_R(255), CVT_G(255), CVT_B(255)},
+//	red={ CVT_R(255), CVT_G(0), CVT_B(0)},
+	red={ CVT_G(0), CVT_R(255), CVT_B(0)},
+//	green={ CVT_R(0), CVT_G(255), CVT_B(0)},
+	green={ CVT_G(255), CVT_R(0), CVT_B(0)},
+	blue={ CVT_R(0), CVT_G(0), CVT_B(255)},
+	yellow={ CVT_R(255), CVT_G(255), CVT_B(0)},
+	cyan={ CVT_R(0), CVT_G(255), CVT_B(255)},
+	magenta={ CVT_R(255), CVT_G(0), CVT_B(255)},
+	dark_red={ CVT_R(153), CVT_G(0), CVT_B(0)},
+	dark_green={ CVT_R(0), CVT_G(153), CVT_B(0)},
+	dark_blue={ CVT_R(0), CVT_G(0), CVT_B(153)},
+	dark_yellow={ CVT_R(153), CVT_G(153), CVT_B(0)},
+	dark_cyan={ CVT_R(0), CVT_G(153), CVT_B(153)},
+	dark_magenta={ CVT_R(153), CVT_G(0), CVT_B(153)},
+	orange={ CVT_R(188), CVT_G(124), CVT_B(26)},
+	light_gray={ CVT_R(210), CVT_G(210), CVT_B(210)},
+	dark_gray={ CVT_R(48), CVT_G(48), CVT_B(48)},
+	light_blue={ CVT_R(128), CVT_G(128), CVT_B(255)},
+	light_red={ CVT_R(255), CVT_G(128), CVT_B(128)},
+	light_green={ CVT_R(128), CVT_G(255), CVT_B(128)};
+#else
+	black={0,0,0}, 
+	white={255,255,255}, 
+	red={255,0,0},
+	green={0,255,0},
+	blue={0,0,255},
+	yellow={255,255,0},
+	cyan={0,255,255},
+	magenta={255,0,255},
+	dark_red={153,0,0}, 
+	dark_green={0,153,0},
+	dark_blue={0,0,153},
+	dark_yellow={153,153,0},
+	dark_cyan={0,153,153},
+	dark_magenta={153,0,153},
+	orange={188,124,26},
+	light_gray={210,210,210}, 
+	dark_gray={48,48,48},
+	light_blue={128,128,255},
+	light_red={255,128,128},
+	light_green={128,255,128};
+#endif

@@ -21,6 +21,7 @@
 #include "profile.h"
 #include <math.h>
 #include "ST7789.h"
+#include "debug.h"
 
 // ---------------------------------------------
 #define BSIZ 18
@@ -124,7 +125,7 @@ void Simulate_XYZ_Data(int reset) {
 int main (void) {
 	uint16_t r;
 	char buffer[32];
-	char test[100];
+	char test[6];
 	uint16_t count;
 	PT_T p = {COL_TO_X(0), ROW_TO_Y(0)};
 	
@@ -133,13 +134,14 @@ int main (void) {
 	LCD_Text_Init(2);
 	LCD_Erase();
 	
-	count = 0;
-	for(uint8_t c=' '; c<='~'; c++) {
-		test[count] = c;
-		count++;
-	}
-	LCD_Text_PrintStr(&p, test);
+	//count = 0;
+	//for(uint8_t c=' '; c<='~'; c++) {
+	//	test[count] = c;
+	//	count++;
+	//}
+	Sim_Enhance_PrintChar(&p);
 	while(1);
+	
 	
 	LCD_Text_PrintStr(&p, "Homework 2");
 	

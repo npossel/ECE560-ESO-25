@@ -22,7 +22,7 @@ extern const FGPIO_MemMapPtr DBG_PT[9];
 #define DBG_NULL 8 // mapped in debug.c to a non-GPIO bit on a used port, so accesses have no effect
 
 // Debug Signal mapping 
-#define DBG_TREADACC_POS		DBG_1 	
+#define DBG_CHAR				  	DBG_1 	
 #define DBG_TREADTS_POS 		DBG_2
 #define DBG_TREFILLSB_POS 	DBG_3
 #define DBG_TUPDATESCR_POS	DBG_4
@@ -33,6 +33,6 @@ extern const FGPIO_MemMapPtr DBG_PT[9];
 #define DEBUG_STOP(x)		{DBG_PT[x]->PCOR = MASK(DBG_Bit[x]);}
 #define DEBUG_TOGGLE(x)	{DBG_PT[x]->PTOR = MASK(DBG_Bit[x]);}
 
-void Init_Debug_Signals(void);
+//void Init_Debug_Signals(void);
 
 #endif // DEBUG_H

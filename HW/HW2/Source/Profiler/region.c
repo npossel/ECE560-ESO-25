@@ -16,21 +16,20 @@ const REGION_T RegionTable[] = {
 	{0x000003ed, 0x000003ee, "__scatterload_null"}, // 12
 	{0x00000411, 0x00000534, "LCD_GPIO_Init"}, // 13
 	{0x00000549, 0x00000608, "LCD_Init"}, // 14
-	{0x00000629, 0x0000072c, "LCD_Start_Rectangle"}, // 15
-	{0x00000731, 0x00000748, "LCD_TS_Init"}, // 16
-	{0x00000751, 0x000007ac, "LCD_Text_Init"}, // 17
-	{0x000007bd, 0x00000aac, "LCD_Text_PrintChar"}, // 18
-	{0x00000aad, 0x00000afc, "LCD_Text_PrintStr"}, // 19
-	{0x00000b01, 0x00000bcc, "LCD_Write_Rectangle_Pixe"}, // 20
-	{0x00000bd1, 0x00000c0c, "PIT_IRQHandler"}, // 21
-	{0x00000c15, 0x00000c84, "PWM_Init"}, // 22
-	{0x00000c91, 0x00000ce8, "Process_Profile_Sample"}, // 23
-	{0x00000cf9, 0x00000e04, "SystemInit"}, // 24
-	{0x00000e31, 0x00000e3c, "TPM0_IRQHandler"}, // 25
-	{0x00000e41, 0x00000fe8, "main"}, // 26
-	{0x00000fe9, 0x00000ff6, "__scatterload_copy"}, // 27
-	{0x00000ff7, 0x00001004, "__scatterload_zeroinit"}, // 28
+	{0x00000625, 0x00000728, "LCD_Start_Rectangle"}, // 15
+	{0x00000729, 0x00000740, "LCD_TS_Init"}, // 16
+	{0x00000749, 0x000007a4, "LCD_Text_Init"}, // 17
+	{0x000007b9, 0x00000884, "LCD_Write_Rectangle_Pixe"}, // 18
+	{0x00000889, 0x000008c4, "PIT_IRQHandler"}, // 19
+	{0x000008cd, 0x0000093c, "PWM_Init"}, // 20
+	{0x00000951, 0x000009a8, "Process_Profile_Sample"}, // 21
+	{0x000009b9, 0x00000e58, "Sim_Enhance_PrintChar"}, // 22
+	{0x00000e5d, 0x00000f68, "SystemInit"}, // 23
+	{0x00000f95, 0x00000fa0, "TPM0_IRQHandler"}, // 24
+	{0x00000fa5, 0x00000fc6, "main"}, // 25
+	{0x00000fc7, 0x00000fd4, "__scatterload_copy"}, // 26
+	{0x00000fd5, 0x00000fe2, "__scatterload_zeroinit"}, // 27
 }; 
-const unsigned NumProfileRegions=29;
-volatile unsigned RegionCount[29];
-unsigned SortedRegions[29];
+const unsigned NumProfileRegions=28;
+volatile unsigned RegionCount[28];
+unsigned SortedRegions[28];
