@@ -12,6 +12,12 @@
 thread visualizer operations. Buggy: 0 value not working! */
 #define TV_DETERM_TIMING 1
 
+/* TV_UNIQUE_BLOCKED_SIGNAL 
+0: Simple transition, signal same as THREAD_PREEMPTED: ---_____ 
+1: Adds pulse to differentiate from THREAD_PREEMPTED:  ---_--__ 
+*/
+#define TV_UNIQUE_BLOCKED_SIGNAL 0
+
 /*NOP_COUNT defines how many nops between toggling the pins when thread is blocked*/
 #define NOP_COUNT	3
 

@@ -15,14 +15,17 @@ void debug_signal(int bit_pos, int func, FGPIO_MemMapPtr pt){
 		case(THREAD_BLOCKED): // --__--_________
 		{
 				pt->PCOR=MASK(bit_pos);					/*Blocked thread*/
+			
+				#if TV_UNIQUE_BLOCKED_SIGNAL
 				for(j = 0;j<NOP_COUNT;j++){
 					__nop();
-				}														/*To add delay between consecutive Toggling of the same debug pin*/
+				}														/* Wait before starting */
 				pt->PTOR=MASK(bit_pos);
 				for(j = 0;j<NOP_COUNT;j++){
 					__nop();
 				}	
 				pt->PTOR=MASK(bit_pos);
+				#endif
 				break;
 		}
 		case(THREAD_SWITCHED): // __--------------

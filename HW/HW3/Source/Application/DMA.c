@@ -91,6 +91,7 @@ void Start_DMA_Playback() {
 
 
 void DMA0_IRQHandler(void) {
+	DEBUG_START(DBG_ISR_DMA);
 	// Clear done flag 
 	DMA0->DMA[0].DSR_BCR = DMA_DSR_BCR_DONE_MASK; 
 	/// Prep for next DMA transfers
@@ -106,4 +107,5 @@ void DMA0_IRQHandler(void) {
 	DMA0->DMA[0].DSR_BCR = DMA_DSR_BCR_BCR(Reload_DMA_Byte_Count);
 	// Signal to OS event requesting source buffer refill
 	osThreadFlagsSet(t_Refill_SoundBuffer, EV_REFILL_SOUND_BUFFER);
+	DEBUG_STOP(DBG_ISR_DMA);
 	}

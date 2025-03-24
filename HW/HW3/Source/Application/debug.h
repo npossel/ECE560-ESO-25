@@ -36,8 +36,8 @@
 #define DBG_NULL (DBG_NUM_SIGNALS-1) // mapped in debug.c to a non-GPIO bit on a used port, so accesses have no effect
 
 // Define meaningful names for user debug signals here
-
-
+#define DBG_ISR_DMA (DBG_0)
+#define DBG_IDLE_LOOP (DBG_1)
 
 
 #if 0

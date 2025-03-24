@@ -27,12 +27,14 @@
  
 #include "cmsis_compiler.h"
 #include "rtx_os.h"
+#include "debug.h"
  
 // OS Idle Thread
 __WEAK __NO_RETURN void osRtxIdleThread (void *argument) {
   (void)argument;
 
   for (;;) {
+		DEBUG_TOGGLE(DBG_IDLE_LOOP);
 	}
 }
  
