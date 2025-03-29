@@ -35,6 +35,7 @@ __WEAK __NO_RETURN void osRtxIdleThread (void *argument) {
 
   for (;;) {
 		DEBUG_TOGGLE(DBG_IDLE_LOOP);
+		for (volatile int i=0; i<2; i++);
 	}
 }
  

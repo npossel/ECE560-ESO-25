@@ -92,6 +92,7 @@ void Start_DMA_Playback() {
 
 void DMA0_IRQHandler(void) {
 	DEBUG_START(DBG_ISR_DMA);
+	DEBUG_START(DBG_REFILL_PENDING);
 	// Clear done flag 
 	DMA0->DMA[0].DSR_BCR = DMA_DSR_BCR_DONE_MASK; 
 	/// Prep for next DMA transfers

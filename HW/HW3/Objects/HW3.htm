@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\HW3.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\HW3.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Sun Mar 23 14:21:51 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Sat Mar 29 18:11:28 2025
 <BR><P>
 <H3>Maximum Stack Usage =        288 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -662,7 +662,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6]"></a>DMA0_IRQHandler</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, dma.o(.text.DMA0_IRQHandler))
+<P><STRONG><a name="[6]"></a>DMA0_IRQHandler</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, dma.o(.text.DMA0_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = DMA0_IRQHandler &rArr; osThreadFlagsSet &rArr; osRtxPostProcess &rArr; osRtxKernelErrorNotify
 </UL>
 <BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadFlagsSet
@@ -938,8 +938,10 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadDelayTick
 </UL>
 
-<P><STRONG><a name="[110]"></a>EvrRtxThreadBlocked</STRONG> (Thumb, 160 bytes, Stack size 0 bytes, new_events.o(.text.EvrRtxThreadBlocked))
-<BR><BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
+<P><STRONG><a name="[110]"></a>EvrRtxThreadBlocked</STRONG> (Thumb, 300 bytes, Stack size 4 bytes, new_events.o(.text.EvrRtxThreadBlocked))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = EvrRtxThreadBlocked
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxThreadWaitEnter
 </UL>
 
 <P><STRONG><a name="[135]"></a>EvrRtxThreadCreated</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, new_events.o(.text.EvrRtxThreadCreated))
@@ -1289,8 +1291,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[9f]"></a>Start_DMA_Playback</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, dma.o(.text.Start_DMA_Playback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Start_DMA_Playback
+<P><STRONG><a name="[9f]"></a>Start_DMA_Playback</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, dma.o(.text.Start_DMA_Playback))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Start_DMA_Playback
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TPM2_Start
 </UL>
@@ -1340,8 +1342,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> threads.o(.text.Create_OS_Objects)
 </UL>
-<P><STRONG><a name="[2e]"></a>Thread_Refill_SoundBuffer</STRONG> (Thumb, 512 bytes, Stack size 24 bytes, sound.o(.text.Thread_Refill_SoundBuffer))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Thread_Refill_SoundBuffer &rArr; osThreadFlagsWait
+<P><STRONG><a name="[2e]"></a>Thread_Refill_SoundBuffer</STRONG> (Thumb, 952 bytes, Stack size 40 bytes, sound.o(.text.Thread_Refill_SoundBuffer))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = Thread_Refill_SoundBuffer &rArr; osThreadFlagsWait
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadFlagsWait
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexRelease
@@ -1658,7 +1660,9 @@ Global Symbols
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxKernelErrorNotify
 </UL>
 
-<P><STRONG><a name="[3b]"></a>osRtxIdleThread</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, rtx_config.o(.text.osRtxIdleThread))
+<P><STRONG><a name="[3b]"></a>osRtxIdleThread</STRONG> (Thumb, 40 bytes, Stack size 4 bytes, rtx_config.o(.text.osRtxIdleThread))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = osRtxIdleThread
+</UL>
 <BR>[Address Reference Count : 1]<UL><LI> rtx_thread.o(.text.osRtxThreadStartup)
 </UL>
 <P><STRONG><a name="[c8]"></a>osRtxKernelBeforeInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_kernel.o(.text.osRtxKernelBeforeInit))

@@ -13,6 +13,7 @@
 #include "DMA.h"
 #include "threads.h"
 #include "game.h"
+#include "debug.h"
 
 int16_t SineTable[NUM_STEPS];
 uint16_t SoundBuffer[2][NUM_SAMPLES_PER_SOUND_BUFFER];
@@ -368,6 +369,7 @@ void Play_Waveform_with_DMA(void) {
 			}		
 			sum = MIN(sum + (MAX_DAC_CODE/2), MAX_DAC_CODE-1); // Center at 1/2 DAC range, clip top
 			SoundBuffer[WriteSBNum][i] = sum; 
+			DEBUG_STOP(DBG_REFILL_PENDING);
 			// Sample written
 		}
 		// Clear updated flags for all voices

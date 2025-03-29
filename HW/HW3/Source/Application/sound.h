@@ -24,7 +24,7 @@
 #define PERIOD_TO_VOLUME_FACTOR (8) // Low frequency boost: add period<<(this factor) to volume
 
 // Buffering
-#define USE_DOUBLE_BUFFER (0) // DEFAULT: 0
+#define USE_DOUBLE_BUFFER (1) // DEFAULT: 0
 #define TOTAL_SOUND_BUFFER_SAMPLES (1024)
 #define NUM_SAMPLES_PER_SOUND_BUFFER (TOTAL_SOUND_BUFFER_SAMPLES/(1+USE_DOUBLE_BUFFER))
 
@@ -34,7 +34,7 @@
 
 // Priorities
 #define THREAD_SM_PRIO 		osPriorityNormal
-#define THREAD_RSB_PRIO 	osPriorityNormal // DEFAULT: osPriorityNormal 
+#define THREAD_RSB_PRIO 	osPriorityAboveNormal // DEFAULT: osPriorityNormal 
 
 // Events for sound generation and control
 #define EV_START_NEW_SOUND 			(0x01)
